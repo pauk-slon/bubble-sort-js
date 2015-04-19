@@ -75,6 +75,15 @@ SortingDialogController.prototype = {
         this._unmarkActiveElements();
         this._sorter = null;
     },
+    _rearrange_neighbor_elements: function($leftElement, $rightElement){
+        $leftElement.fadeTo(250, 0.3, function() {
+            $rightElement.insertBefore($leftElement);
+            $leftElement.fadeTo(100, 1);
+        });
+        $rightElement.fadeTo(250, 0.3, function() {
+            $rightElement.fadeTo(100, 1);
+        });
+    },
     _doSortingStep: function() {
         this._unmarkActiveElements();
         var sorter = this._sorter;
@@ -88,9 +97,9 @@ SortingDialogController.prototype = {
             $element2.addClass(this.ACTIVE_ELEMENT_CSS_CLASS);
             if (item1.position != null && item2.position != null) {
                 if (item1.position > item2.position)
-                    $element2.insertBefore($element1);
+                    this._rearrange_neighbor_elements($element1, $element2);
                 else
-                    $element1.insertBefore($element2);
+                    this._rearrange_neighbor_elements($element2, $element1);
             }
         }
         else {
