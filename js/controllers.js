@@ -4,13 +4,15 @@ function SortingDialogController(controls) {
     this.$elementWeight = controls.elementWeight;
     this.ELEMENT_CSS_CLASS = "sorting-element";
     this.ACTIVE_ELEMENT_CSS_CLASS = "sorting-element-active";
+    this.MIN_RANDOM_ELEMENT_COUNT = 3;
+    this.MAX_RANDOM_ELEMENT_COUNT = 18;
+    this.MAX_RANDOM_ELEMENT_VALUE = 5000;
     this._sorter = null;
 }
 
 
 SortingDialogController.prototype = {
-    addElement: function() {
-        var weight = this.$elementWeight.val();
+    _addElement: function(weight) {
         if (isNaN(weight))
             return;
         var $element = this.$elementTemplate.clone();
@@ -19,6 +21,24 @@ SortingDialogController.prototype = {
         $element.dblclick({controller: this}, this._removeElement);
         $element.text(weight).removeAttr('hidden');
         this.resetSorter();
+    },
+    addElement: function() {
+        var weight = this.$elementWeight.val();
+        this._addElement(weight);
+    },
+    _getRandomInt: function (min, max) {
+        var delta = max - min + 1;
+        return Math.floor(Math.random() * delta) + min;
+    },
+    addAFewRandomElements: function() {
+        var elementCount = this._getRandomInt(
+            this.MIN_RANDOM_ELEMENT_COUNT,
+            this.MAX_RANDOM_ELEMENT_COUNT
+        );
+        for (var i = 0; i <= elementCount; i++) {
+            var weight = this._getRandomInt(1, this.MAX_RANDOM_ELEMENT_VALUE);
+            this._addElement(weight)
+        }
     },
     _removeElement: function(eventObject) {
         var $element = eventObject.target;

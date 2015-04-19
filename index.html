@@ -33,13 +33,20 @@
         </p>
         <form class="form-inline">
             <div class="form-group">
-                <label for="elementWeight">Значение</label>
-                <input type="number" class="form-control" id="elementWeight" placeholder="введите число">
+                <input type="number"
+                       class="form-control"
+                       id="elementWeight"
+                       placeholder="введите значение элемента">
             </div>
             <button type="button"
                     class="btn btn-default"
                     onclick="sortingDialogController.addElement()">
-                Добавить значение
+                Добавить элемент
+            </button>
+            <button type="button"
+                    class="btn btn-default"
+                    onclick="sortingDialogController.addAFewRandomElements()">
+                Добавить произвольные элементы
             </button>
             <button type="button"
                     class="btn btn-default"
