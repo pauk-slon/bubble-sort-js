@@ -9,13 +9,6 @@
 </head>
 <body>
     <span id="elementTemplate" class="badge" hidden="hidden"></span>
-    <nav class="navbar navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Bubble Sort Visualization</a>
-            </div>
-        </div>
-    </nav>
     <div class="jumbotron">
         <div class="container">
             <h1>Сортировка «пузырьком»</h1>
@@ -24,42 +17,49 @@
     <div class="container">
         <p class="lead">
             Алгоритм состоит из повторяющихся проходов по сортируемому массиву. За каждый проход элементы
-            последовательно сравниваются попарно и, если порядок в паре неверный, выполняется обмен элементов.
+            последовательно сравниваются попарно и, если порядок в паре неверный (первый элемент пары больше второго),
+            выполняется обмен элементов.
             Проходы по массиву повторяются N-1 раз или до тех пор, пока на очередном проходе не окажется,
             что обмены больше не нужны, что означает — массив отсортирован. При каждом проходе алгоритма по внутреннему
             циклу, очередной наибольший элемент массива ставится на своё место в конце массива рядом с предыдущим
             «наибольшим элементом», а наименьший элемент перемещается на одну позицию к началу массива
             («всплывает» до нужной позиции как пузырёк в воде, отсюда и название алгоритма).
         </p>
-        <form class="form-inline">
-            <div class="form-group">
-                <input type="number"
-                       class="form-control"
-                       id="elementWeight"
-                       placeholder="введите значение элемента">
+        <p>
+            Сформировать массив элементов можно добавляя по одному элементу кнопкой <kbd>Добавить элемент</kbd>,
+            предварительно задав значение элемента в поле рядом с ней.
+            А можно добавить сразу несколько (каждый раз разное количество) случайно сгенерированных элементов
+            кнопкой <kbd>Добавить произвольные элементы</kbd>.
+            Или же использовать оба способа в любой последовательности.
+        </p>
+        <p>
+            Удалить непонравившийся элемент из массива можно двойным кликом на нём.
+            Одним нажатием кнопки <kbd>Удалить все элементы</kbd> можно очистить весь массив.
+        </p>
+        <p>
+            Когда массив заполнен, нажимайте <kbd>Сортировать!</kbd> для запуска сортировки.
+            Сравниваемая пара элементов подсветится цветом, и если требуется перестановка (первый элемент больше второго),
+            то элементы исчезнут на мгновение и затем появятся, уже установленными в правильном порядке.
+            Переход к следующему сравнению будет сделан через некоторое время автоматически,
+            но его можно форсировать повторным нажатием кнопки <kbd>Сортировать!</kbd>. Любое изменение массива
+            (удаление или добавление новых элементов) останавливает запущенный процесс сортировки,
+            для его возобновления нажимайте ту же самую кнопку <kbd>Сортировать!</kbd>.
+        </p>
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <div class="input-group control-panel">
+                    <input type="number" class="form-control" placeholder="значение элемента..." id="elementWeight">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" onclick="sortingDialogController.addElement()" type="button">Добавить элемент</button>
+                        <button class="btn btn-default" onclick="sortingDialogController.addAFewRandomElements()" type="button">Добавить произвольные элементы</button>
+                        <button class="btn btn-default" onclick="sortingDialogController.removeElements()" type="button">Удалить все элементы</button>
+                        <button class="btn btn-primary" onclick="sortingDialogController.sort()" type="button">Сортировать!</button>
+                    </span>
+                </div>
             </div>
-            <button type="button"
-                    class="btn btn-default"
-                    onclick="sortingDialogController.addElement()">
-                Добавить элемент
-            </button>
-            <button type="button"
-                    class="btn btn-default"
-                    onclick="sortingDialogController.addAFewRandomElements()">
-                Добавить произвольные элементы
-            </button>
-            <button type="button"
-                    class="btn btn-default"
-                    onclick="sortingDialogController.removeElements()">
-                Удалить все элементы
-            </button>
-            <button type="button"
-                    class="btn btn-default"
-                    onclick="sortingDialogController.sort()">
-                Сортировать!
-            </button>
-        </form>
-        <br/>
+        </div>
+
         <p id="elementsContainer"></p>
 
     </div>
@@ -77,7 +77,7 @@
         setInterval(function() {
             if (sortingDialogController.isSortInProgress())
                 sortingDialogController.sort();
-        }, 3000);
+        }, 2500);
     </script>
 </body>
 </html>

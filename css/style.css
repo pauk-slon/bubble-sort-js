@@ -2,7 +2,12 @@
     font-size: 72px;
     margin: 3pt;
 }
-
 .sorting-element-active {
     background-color: darkred;
+}
+.control-panel {
+    padding: 15px;
+}
+#elementsContainer {
+    padding-top: 15px;
 }
