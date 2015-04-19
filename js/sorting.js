@@ -63,7 +63,8 @@ BubbleStepByStepSorter.prototype = {
         var nextElementIndex = this._currentIndex + 1;
         var nextElement = this._getElement(nextElementIndex);
         this._currentIndex++;
-        // если текущий элемент, оказался больше следующего, то меняем их местами
+        // если текущий элемент, оказался больше следующего,
+        // то меняем их местами и регистрируем перестановку
         if (currentElement.weight > nextElement.weight) {
             this._changeOrder(currentElementIndex, nextElementIndex);
             this._swapped = true;
