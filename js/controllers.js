@@ -5,7 +5,7 @@ function SortingDialogController(controls) {
     this.ELEMENT_CSS_CLASS = "sorting-element";
     this.ACTIVE_ELEMENT_CSS_CLASS = "sorting-element-active";
     this.MIN_RANDOM_ELEMENT_COUNT = 3;
-    this.MAX_RANDOM_ELEMENT_COUNT = 18;
+    this.MAX_RANDOM_ELEMENT_COUNT = 11;
     this.MAX_RANDOM_ELEMENT_VALUE = 5000;
     this.REARAGGING_FADE_IN_TIME = 150;
     this.REARAGGING_FADE_OUT_TIME = 50;
@@ -112,5 +112,8 @@ SortingDialogController.prototype = {
         else {
             this.resetSorter();
         }
+    },
+    isSortInProgress: function() {
+        return this._sorter != null;
     }
 };

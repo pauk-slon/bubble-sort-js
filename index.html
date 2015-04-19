@@ -74,6 +74,10 @@
             elementTemplate: $('#elementTemplate'),
             elementWeight: $('#elementWeight')
         });
+        setInterval(function() {
+            if (sortingDialogController.isSortInProgress())
+                sortingDialogController.sort();
+        }, 3000);
     </script>
 </body>
 </html>
