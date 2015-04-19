@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="ru">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Сортировка «пузырьком»</title>
+</head>
+<body>
+    <span id="elementTemplate" class="badge" hidden="hidden"></span>
+    <nav class="navbar navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Bubble Sort Visualization</a>
+            </div>
+        </div>
+    </nav>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Сортировка «пузырьком»</h1>
+        </div>
+    </div>
+    <div class="container">
+        <p class="lead">
+            Алгоритм состоит из повторяющихся проходов по сортируемому массиву. За каждый проход элементы
+            последовательно сравниваются попарно и, если порядок в паре неверный, выполняется обмен элементов.
+            Проходы по массиву повторяются N-1 раз или до тех пор, пока на очередном проходе не окажется,
+            что обмены больше не нужны, что означает — массив отсортирован. При каждом проходе алгоритма по внутреннему
+            циклу, очередной наибольший элемент массива ставится на своё место в конце массива рядом с предыдущим
+            «наибольшим элементом», а наименьший элемент перемещается на одну позицию к началу массива
+            («всплывает» до нужной позиции как пузырёк в воде, отсюда и название алгоритма).
+        </p>
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="elementWeight">Значение</label>
+                <input type="number" class="form-control" id="elementWeight" placeholder="введите число">
+            </div>
+            <button type="button"
+                    class="btn btn-default"
+                    onclick="sortingDialogController.addElement()">
+                Добавить значение
+            </button>
+            <button type="button"
+                    class="btn btn-default"
+                    onclick="sortingDialogController.sort()">
+                Сортировать!
+            </button>
+        </form>
+        <br/>
+        <p id="elementsContainer"></p>
+
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="js/sorting.js"></script>
+    <script src="js/controllers.js"></script>
+    <script type="text/javascript">
+        sortingDialogController = new SortingDialogController({
+            elementsContainer: $('#elementsContainer'),
+            elementTemplate: $('#elementTemplate'),
+            elementWeight: $('#elementWeight')
+        });
+    </script>
+</body>
+</html>

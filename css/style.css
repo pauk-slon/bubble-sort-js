@@ -1,0 +1,8 @@
+.sorting-element {
+    font-size: 72px;
+    margin: 3pt;
+}
+
+.sorting-element-active {
+    background-color: darkred;
+}
