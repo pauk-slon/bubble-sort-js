@@ -7,6 +7,8 @@ function SortingDialogController(controls) {
     this.MIN_RANDOM_ELEMENT_COUNT = 3;
     this.MAX_RANDOM_ELEMENT_COUNT = 18;
     this.MAX_RANDOM_ELEMENT_VALUE = 5000;
+    this.REARAGGING_FADE_IN_TIME = 150;
+    this.REARAGGING_FADE_OUT_TIME = 50;
     this._sorter = null;
 }
 
@@ -39,6 +41,11 @@ SortingDialogController.prototype = {
             var weight = this._getRandomInt(1, this.MAX_RANDOM_ELEMENT_VALUE);
             this._addElement(weight)
         }
+    },
+    removeElements: function() {
+        $elements = this._getElements();
+        $elements.remove();
+        controller.resetSorter();
     },
     _removeElement: function(eventObject) {
         var $element = eventObject.target;
@@ -76,12 +83,12 @@ SortingDialogController.prototype = {
         this._sorter = null;
     },
     _rearrange_neighbor_elements: function($leftElement, $rightElement){
-        $leftElement.fadeTo(250, 0.3, function() {
+        $leftElement.fadeTo(this.REARAGGING_FADE_IN_TIME, 0.3, function() {
             $rightElement.insertBefore($leftElement);
-            $leftElement.fadeTo(100, 1);
+            $leftElement.fadeTo(this.REARAGGING_FADE_OUT_TIME, 1);
         });
-        $rightElement.fadeTo(250, 0.3, function() {
-            $rightElement.fadeTo(100, 1);
+        $rightElement.fadeTo(this.REARAGGING_FADE_IN_TIME, 0.3, function() {
+            $rightElement.fadeTo(this.REARAGGING_FADE_OUT_TIME, 1);
         });
     },
     _doSortingStep: function() {
