@@ -82,7 +82,7 @@ SortingDialogController.prototype = {
         this._unmarkActiveElements();
         this._sorter = null;
     },
-    _rearrange_neighbor_elements: function($leftElement, $rightElement){
+    _rearrangeNeighborElements: function($leftElement, $rightElement){
         $leftElement.fadeTo(this.REARAGGING_FADE_IN_TIME, 0.3, function() {
             $rightElement.insertBefore($leftElement);
             $leftElement.fadeTo(this.REARAGGING_FADE_OUT_TIME, 1);
@@ -104,9 +104,9 @@ SortingDialogController.prototype = {
             $element2.addClass(this.ACTIVE_ELEMENT_CSS_CLASS);
             if (item1.position != null && item2.position != null) {
                 if (item1.position > item2.position)
-                    this._rearrange_neighbor_elements($element1, $element2);
+                    this._rearrangeNeighborElements($element1, $element2);
                 else
-                    this._rearrange_neighbor_elements($element2, $element1);
+                    this._rearrangeNeighborElements($element2, $element1);
             }
         }
         else {
